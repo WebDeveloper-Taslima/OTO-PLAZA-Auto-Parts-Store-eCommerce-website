@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>OTO PLAZA | Auto Parts Store & Accessories - Elementor Pro Redesign</title>
+  <meta name="description" content="OTO PLAZA - High-Performance Auto Parts, OEM Engine Components, Suspension, Tuning, Brakes & Luxury Car Accessories built with Elementor Pro aesthetics.">
+  
+  <!-- Google Fonts & FontAwesome CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Design System Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       TOP MOCKUP CONTROL BAR (DESIGN PRESENTATION & TEMPLATE SWITCHER)
+       ========================================================================== -->
+  <div class="control-bar">
+    <div class="control-brand">
+      <i class="fas fa-car-battery"></i> OTO PLAZA <span class="badge-tag">Elementor Pro</span>
+    </div>
+
+    <!-- 6 Key Template Switcher Buttons -->
+    <div class="template-nav">
+      <button class="template-btn active" data-template="home"><i class="fas fa-home"></i> <span>1. Home</span></button>
+      <button class="template-btn" data-template="shop"><i class="fas fa-store"></i> <span>2. Shop</span></button>
+      <button class="template-btn" data-template="product"><i class="fas fa-cogs"></i> <span>3. Product</span></button>
+      <button class="template-btn" data-template="finder"><i class="fas fa-car"></i> <span>4. Finder</span></button>
+      <button class="template-btn" data-template="cart"><i class="fas fa-shopping-cart"></i> <span>5. Cart (<strong class="cart-btn-count">2</strong>)</span></button>
+      <button class="template-btn" data-template="checkout"><i class="fas fa-credit-card"></i> <span>6. Checkout</span></button>
+    </div>
+
+    <!-- Desktop vs Mobile Viewport Switcher -->
+    <div class="viewport-controls">
+      <button class="viewport-btn active" data-mode="desktop" title="Desktop View"><i class="fas fa-desktop"></i> <span class="hide-mobile">Desktop</span></button>
+      <button class="viewport-btn" data-mode="mobile" title="Mobile View"><i class="fas fa-mobile-alt"></i> <span class="hide-mobile">Mobile</span></button>
+    </div>
+  </div>
+
+  <!-- VIEWPORT FRAME WRAPPER FOR DESKTOP / MOBILE SIMULATION -->
+  <div class="viewport-frame" id="viewportFrame">
+
+    <!-- ==========================================================================
+         SITE HEADER & NAVIGATION
+         ========================================================================== -->
+    <header class="site-header">
+      <!-- Announcement Top Bar -->
+      <div class="top-announcement">
+        <span><i class="fas fa-bolt"></i> <strong>FLASH SALE:</strong> Up to 40% Off Auto Parts!</span>
+        <span class="hide-mobile"><i class="fas fa-truck-fast"></i> <strong>FREE Freight</strong> Over $150</span>
+        <span class="hide-mobile"><i class="fas fa-phone-volume"></i> <strong>Support:</strong> +1 (800) 555-OTO1</span>
+      </div>
+
+      <!-- Main Header Area -->
+      <div class="header-main">
+        <div class="header-logo-row">
+          <a href="#" class="logo-wrapper" data-target-template="home">
+            <div class="logo-icon">
+              <i class="fas fa-car-side"></i>
+            </div>
+            <div class="logo-text">
+              <span class="brand">OTO <span>PLAZA</span></span>
+              <span class="tagline">AUTO PARTS & ACCESSORIES</span>
+            </div>
+          </a>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle Navigation">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Smart Live Search Bar -->
+        <div class="header-search">
+          <select class="search-category" id="searchCategorySelect">
+            <option value="all">All Categories</option>
+            <option value="engine">Engine & Turbo</option>
+            <option value="brakes">Brakes & Suspension</option>
+            <option value="wheels">Wheels & Rims</option>
+            <option value="interior">Interior Tuning</option>
+            <option value="lighting">LED Lighting</option>
+          </select>
+          <div class="search-input-group">
+            <input type="text" id="searchInput" placeholder="Search part, SKU, OEM (e.g. Brake Disc)...">
+          </div>
+          <button class="search-btn" id="searchTriggerBtn">
+            <i class="fas fa-search"></i> <span>Search</span>
+          </button>
+        </div>
+
+        <!-- Header Action Icons -->
+        <div class="header-actions">
+          <div class="action-item" id="garageBtnTrigger" data-target-template="finder" title="My Vehicle Garage">
+            <div class="action-icon">
+              <i class="fas fa-warehouse"></i>
+              <span class="badge" id="garageBadgeCount">1</span>
+            </div>
+            <div class="action-meta hide-mobile">
+              <span class="label">My Garage</span>
+              <span class="value" id="headerActiveVehicle">2024 BMW M3</span>
+            </div>
+          </div>
+
+          <div class="action-item" data-target-template="cart" title="View Shopping Cart">
+            <div class="action-icon">
+              <i class="fas fa-shopping-bag"></i>
+              <span class="badge cart-count">2</span>
+            </div>
+            <div class="action-meta hide-mobile">
+              <span class="label">Shopping Cart</span>
+              <span class="value" id="headerCartTotal">$1,548.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Navigation Menu (Desktop + Mobile Drawer) -->
+      <nav class="main-nav-bar" id="mainNavBar">
+        <div class="nav-links">
+          <a href="#" class="nav-link active-link" data-target-template="home"><i class="fas fa-home"></i> HOME</a>
+          <a href="#" class="nav-link" data-target-template="shop"><i class="fas fa-store"></i> SHOP</a>
+          <a href="#" class="nav-link" data-target-template="shop" data-filter="parts"><i class="fas fa-cogs"></i> PARTS & ACCESSORIES</a>
+          <a href="#" class="nav-link" data-target-template="finder"><i class="fas fa-car-crash"></i> FITMENT GUARANTEE</a>
+          <a href="#" class="nav-link" data-target-template="product"><i class="fas fa-star"></i> FEATURED PART</a>
+          <a href="#" class="nav-link" data-target-template="cart"><i class="fas fa-receipt"></i> CHECKOUT</a>
+        </div>
+        <div class="nav-hotline hide-mobile">
+          <i class="fas fa-headset"></i> Call 0900-OTO-PLAZA
+        </div>
+      </nav>
+    </header>
+
+    <!-- ==========================================================================
+         TEMPLATE 1: HOME PAGE (EXACT LANDING PAGE MATCHING ATTACHMENT)
+         ========================================================================== -->
+    <main id="template-home" class="page-view active-view">
+      
+      <!-- HERO BANNER (DRAMATIC SPORTS CAR BACKGROUND) -->
+      <section class="hero-banner">
+        <div class="hero-grid">
+          <div class="hero-text-content">
+            <span class="hero-badge-tag"><i class="fas fa-shield-halved"></i> Elementor Pro Auto Parts Store</span>
+            <h1 class="hero-title">Where Car Parts <span>Never Compromise On Quality</span></h1>
+            <p class="hero-subtitle">High-converting, precision-engineered auto parts & performance accessories. Certified OEM quality, guaranteed vehicle fitment, and fast express shipping.</p>
+            
+            <div class="hero-cta-group">
+              <button class="btn-primary" data-target-template="shop"><i class="fas fa-cart-shopping"></i> Shop Now</button>
+              <button class="btn-secondary" data-target-template="finder"><i class="fas fa-sliders"></i> Filter By Vehicle</button>
+            </div>
+          </div>
+
+          <!-- Car Visual Showcase -->
+          <div class="hero-visual-card">
+            <div class="hero-car-stage">
+              <div class="car-silhouette-art">
+                <i class="fas fa-car-side car-icon-visual"></i>
+              </div>
+              <div class="floating-pill pill-1">
+                <i class="fas fa-circle-check"></i>
+                <span>100% Fitment Guaranteed</span>
+              </div>
+              <div class="floating-pill pill-2">
+                <i class="fas fa-truck-fast"></i>
+                <span>24H Express Shipping</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VEHICLE PARTS FINDER FITMENT BAR (MATCHING ATTACHMENT) -->
+      <section class="vehicle-finder-wrapper">
+        <div class="vehicle-finder-card">
+          <div class="finder-header">
+            <div class="finder-title">
+              <i class="fas fa-car"></i>
+              <span>Find Parts For Your Vehicle</span>
+            </div>
+            <div class="finder-subtitle hide-mobile">Select your car specs to see guaranteed compatible parts</div>
+          </div>
+
+          <div class="finder-controls">
+            <div class="finder-select-group">
+              <label>1. Select Year</label>
+              <select id="finderYearSelect">
+                <option value="">Select Year</option>
+                <option value="2026">2026</option>
+                <option value="2025">2025</option>
+                <option value="2024" selected>2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+              </select>
+            </div>
+
+            <div class="finder-select-group">
+              <label>2. Select Make</label>
+              <select id="finderMakeSelect">
+                <option value="">Select Make</option>
+                <option value="BMW" selected>BMW</option>
+                <option value="Audi">Audi</option>
+                <option value="Mercedes-Benz">Mercedes-Benz</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Ford">Ford</option>
+                <option value="Honda">Honda</option>
+                <option value="Porsche">Porsche</option>
+              </select>
+            </div>
+
+            <div class="finder-select-group">
+              <label>3. Select Model</label>
+              <select id="finderModelSelect">
+                <option value="">Select Model</option>
+                <option value="M3 Competition" selected>M3 / M4 Competition</option>
+                <option value="M5 CS">M5 CS</option>
+                <option value="330i xDrive">330i xDrive</option>
+                <option value="X5 M">X5 M</option>
+              </select>
+            </div>
+
+            <div class="finder-select-group">
+              <label>4. Select Engine / Trim</label>
+              <select id="finderEngineSelect">
+                <option value="">Select Engine</option>
+                <option value="3.0L Twin-Turbo S58" selected>3.0L Twin-Turbo S58 (503 hp)</option>
+                <option value="2.0L Turbo B48">2.0L Turbo B48</option>
+                <option value="4.4L Twin-Turbo V8">4.4L Twin-Turbo V8</option>
+              </select>
+            </div>
+
+            <button class="btn-finder-search" id="finderSubmitBtn">
+              <i class="fas fa-magnifying-glass"></i> Find Parts
+            </button>
+          </div>
+
+          <div class="fitment-status-alert active" id="fitmentAlert">
+            <i class="fas fa-circle-check"></i>
+            <span>Showing parts guaranteed to fit: <strong>2024 BMW M3 Competition (3.0L Twin-Turbo)</strong></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROMO BANNERS GRID (3 FEATURE CARDS - MATCHING ATTACHMENT) -->
+      <section class="promo-grid-section">
+        <div class="promo-grid">
+          <!-- Card 1 -->
+          <div class="promo-card card-1">
+            <div>
+              <span class="promo-tag">BRAKES & SUSPENSION</span>
+              <h3 class="promo-title">Get your car fixed now</h3>
+              <p>Premium Coilover Kits, Struts & Ceramic Brake Discs</p>
+            </div>
+            <a href="#" class="promo-link" data-target-template="shop" data-filter="suspension">
+              <span>Shop Suspension</span> <i class="fas fa-arrow-right"></i>
+            </a>
+            <i class="fas fa-cogs promo-icon-bg"></i>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="promo-card card-2">
+            <div>
+              <span class="promo-tag">LIMITED OFFER</span>
+              <h3 class="promo-title">Big Sale, Big Deal</h3>
+              <p>Turbocharger Systems & Engine Upgrades Up to 40% Off</p>
+            </div>
+            <a href="#" class="promo-link" data-target-template="shop" data-filter="engine">
+              <span>Claim Discount</span> <i class="fas fa-arrow-right"></i>
+            </a>
+            <i class="fas fa-tags promo-icon-bg"></i>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="promo-card card-3">
+            <div>
+              <span class="promo-tag">INTERIOR ACCESSORIES</span>
+              <h3 class="promo-title">UX Interior Tuning</h3>
+              <p>Carbon Fiber Steering Wheels & Ergonomic Bucket Seats</p>
+            </div>
+            <a href="#" class="promo-link" data-target-template="shop" data-filter="interior">
+              <span>Explore Tuning</span> <i class="fas fa-arrow-right"></i>
+            </a>
+            <i class="fas fa-sliders promo-icon-bg"></i>
+          </div>
+        </div>
+      </section>
+
+      <!-- FLASH SALE SECTION WITH COUNTDOWN -->
+      <section class="section-container">
+        <div class="section-header">
+          <div class="section-title-group">
+            <h2 class="section-title">Flash SALE</h2>
+            <span class="flash-sale-badge"><i class="fas fa-fire"></i> HOT DEALS</span>
+          </div>
+
+          <div class="countdown-box">
+            <i class="fas fa-clock"></i>
+            <span>Ends In:</span>
+            <span class="timer-unit" id="hoursBox">14</span> :
+            <span class="timer-unit" id="minsBox">38</span> :
+            <span class="timer-unit" id="secsBox">42</span>
+          </div>
+        </div>
+
+        <div class="products-grid" id="flashSaleProductsGrid">
+          <!-- Product Card 1 -->
+          <div class="product-card">
+            <span class="product-discount-badge">-25% OFF</span>
+            <div class="product-actions-floating">
+              <button class="btn-icon-float quick-view-btn" data-id="rim-19" title="Quick View"><i class="fas fa-eye"></i></button>
+              <button class="btn-icon-float wishlist-btn" title="Add to Wishlist"><i class="fas fa-heart"></i></button>
+            </div>
+            <div class="product-img-wrapper">
+              <i class="fas fa-compact-disc product-part-illustration"></i>
+            </div>
+            <div class="product-cat">WHEELS & RIMS</div>
+            <h3 class="product-title">Forged Performance Alloy Wheel Rim Set 19"</h3>
+            <div class="rating-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <span>(48)</span>
+            </div>
+            <div class="price-row">
+              <span class="current-price">$899.00</span>
+              <span class="old-price">$1,199.00</span>
+            </div>
+            <button class="btn-add-cart" data-id="rim-19" data-name="Forged Alloy Wheel Rim Set 19&quot;" data-price="899.00">
+              <i class="fas fa-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+
+          <!-- Product Card 2 -->
+          <div class="product-card">
+            <span class="product-discount-badge">-18% OFF</span>
+            <div class="product-actions-floating">
+              <button class="btn-icon-float quick-view-btn" data-id="shock-coilovers" title="Quick View"><i class="fas fa-eye"></i></button>
+              <button class="btn-icon-float wishlist-btn" title="Add to Wishlist"><i class="fas fa-heart"></i></button>
+            </div>
+            <div class="product-img-wrapper">
+              <i class="fas fa-dharmachakra product-part-illustration"></i>
+            </div>
+            <div class="product-cat">SUSPENSION</div>
+            <h3 class="product-title">Coilover Adjustable Racing Suspension Kit</h3>
+            <div class="rating-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <span>(32)</span>
+            </div>
+            <div class="price-row">
+              <span class="current-price">$649.00</span>
+              <span class="old-price">$799.00</span>
+            </div>
+            <button class="btn-add-cart" data-id="shock-coilovers" data-name="Coilover Racing Suspension Kit" data-price="649.00">
+              <i class="fas fa-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+
+          <!-- Product Card 3 -->
+          <div class="product-card">
+            <span class="product-discount-badge">-20% OFF</span>
+            <div class="product-actions-floating">
+              <button class="btn-icon-float quick-view-btn" data-id="racing-seats" title="Quick View"><i class="fas fa-eye"></i></button>
+              <button class="btn-icon-float wishlist-btn" title="Add to Wishlist"><i class="fas fa-heart"></i></button>
+            </div>
+            <div class="product-img-wrapper">
+              <i class="fas fa-chair product-part-illustration"></i>
+            </div>
+            <div class="product-cat">INTERIOR</div>
+            <h3 class="product-title">Ergonomic Leather Racing Bucket Seat Set</h3>
+            <div class="rating-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i>
+              <span>(19)</span>
+            </div>
+            <div class="price-row">
+              <span class="current-price">$520.00</span>
+              <span class="old-price">$650.00</span>
+            </div>
+            <button class="btn-add-cart" data-id="racing-seats" data-name="Ergonomic Racing Bucket Seat Set" data-price="520.00">
+              <i class="fas fa-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+
+          <!-- Product Card 4 -->
+          <div class="product-card">
+            <span class="product-discount-badge">-17% OFF</span>
+            <div class="product-actions-floating">
+              <button class="btn-icon-float quick-view-btn" data-id="car-battery" title="Quick View"><i class="fas fa-eye"></i></button>
+              <button class="btn-icon-float wishlist-btn" title="Add to Wishlist"><i class="fas fa-heart"></i></button>
+            </div>
+            <div class="product-img-wrapper">
+              <i class="fas fa-car-battery product-part-illustration"></i>
+            </div>
+            <div class="product-cat">ELECTRICAL</div>
+            <h3 class="product-title">Heavy-Duty AGM 12V Automotive Battery 80Ah</h3>
+            <div class="rating-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <span>(64)</span>
+            </div>
+            <div class="price-row">
+              <span class="current-price">$189.00</span>
+              <span class="old-price">$229.00</span>
+            </div>
+            <button class="btn-add-cart" data-id="car-battery" data-name="Heavy-Duty AGM 12V Battery 80Ah" data-price="189.00">
+              <i class="fas fa-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS & PROOF BAR -->
+      <section class="stats-bar-section">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">2,000+</div>
+            <div class="stat-label">Genuine Auto Parts</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">99%</div>
+            <div class="stat-label">Satisfied Car Owners</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Years Automotive Experience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Expert Mechanics Advice</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEW ARRIVAL PARTS GRID -->
+      <section class="section-container">
+        <div class="section-header">
+          <h2 class="section-title">New Arrival Parts</h2>
+          <button class="btn-secondary" style="color: #0F172A; border-color: #CBD5E1;" data-target-template="shop">View Full Catalog <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <div class="products-grid">
+          <!-- Item 5 -->
+          <div class="product-card">
+            <div class="product-actions-floating">
+              <button class="btn-icon-float quick-view-btn" data-id="spark-plugs"><i class="fas fa-eye"></i></button>
+            </div>
+            <div class="product-img-wrapper">
+              <i class="fas fa-plug product-part-illustration"></i>
+            </div>
+            <div class="product-cat">ENGINE</div>
+            <h3 class="product-title">Iridium Racing Spark Plugs (Set of 4)</h3>
+            <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(14)</span></div>
+            <div class="price-row"><span class="current-price">$75.00</span></div>
+            <button class="btn-add-cart" data-id="spark-plugs" data-name="Iridium Racing Spark Plugs" data-price="75.00"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+          </div>
+
+          <!-- Item 6 -->
+          <div class="product-card">
+            <div class="product-actions-floating">
+              <button class="btn-icon-float quick-view-btn" data-id="brake-discs"><i class="fas fa-eye"></i></button>
+            </div>
+            <div class="product-img-wrapper">
+              <i class="fas fa-circle-notch product-part-illustration"></i>
+            </div>
+            <div class="product-cat">BRAKES</div>
+            <h3 class="product-title">Drilled & Grooved Ceramic Brake Disc Set</h3>
+            <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(51)</span></div>
+            <div class="price-row"><span class="current-price">$430.00</span></div>
+            <button class="btn-add-cart" data-id="brake-discs" data-name="Drilled Ceramic Brake Disc Set" data-price="430.00"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+          </div>
+
+          <!-- Item 7 -->
+          <div class="product-card">
+            <div class="product-actions-floating">
+              <button class="btn-icon-float quick-view-btn" data-id="cold-intake"><i class="fas fa-eye"></i></button>
+            </div>
+            <div class="product-img-wrapper">
+              <i class="fas fa-wind product-part-illustration"></i>
+            </div>
+            <div class="product-cat">TUNING</div>
+            <h3 class="product-title">Carbon Fiber Cold Air Intake System</h3>
+            <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(28)</span></div>
+            <div class="price-row"><span class="current-price">$349.00</span></div>
+            <button class="btn-add-cart" data-id="cold-intake" data-name="Carbon Fiber Cold Air Intake System" data-price="349.00"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+          </div>
+
+          <!-- Item 8 -->
+          <div class="product-card">
+            <div class="product-actions-floating">
+              <button class="btn-icon-float quick-view-btn" data-id="exhaust-catback"><i class="fas fa-eye"></i></button>
+            </div>
+            <div class="product-img-wrapper">
+              <i class="fas fa-smog product-part-illustration"></i>
+            </div>
+            <div class="product-cat">EXHAUST</div>
+            <h3 class="product-title">Quad Stainless Steel Performance Exhaust</h3>
+            <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(37)</span></div>
+            <div class="price-row"><span class="current-price">$799.00</span></div>
+            <button class="btn-add-cart" data-id="exhaust-catback" data-name="Quad Stainless Steel Performance Exhaust" data-price="799.00"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ENGINEERING BANNER BREAK (MATCHING ATTACHMENT) -->
+      <section class="engineering-banner-section">
+        <div class="engineering-banner">
+          <div>
+            <h2 class="eng-title">The Elegance of Engineering <span>Pushed to Premia</span></h2>
+            <p class="eng-desc">Designed for track performance and daily driving comfort. Every auto component passes rigorous 100-point OEM quality benchmarks.</p>
+            <button class="btn-primary" data-target-template="shop"><i class="fas fa-magnifying-glass"></i> Explore OEM Parts Catalog</button>
+          </div>
+          <div class="hide-mobile">
+            <div class="hero-car-stage" style="height: 220px;">
+              <i class="fas fa-engine-warning" style="font-size: 6rem; color: var(--color-primary);"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ==========================================================================
+         TEMPLATE 2: SHOP CATALOG PAGE
+         ========================================================================== -->
+    <main id="template-shop" class="page-view">
+      <div class="section-container" style="padding-top: 3rem;">
+        <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem;">Auto Parts Shop Catalog</h1>
+        <p style="color: #64748B; margin-bottom: 2rem;">Filter by category, price, or vehicle fitment to find exact parts for your car.</p>
+        
+        <div class="shop-responsive-layout">
+          <!-- Filter Sidebar -->
+          <div class="shop-filter-sidebar">
+            <h3 style="font-size: 1.1rem; margin-bottom: 1.2rem; font-weight: 800;"><i class="fas fa-filter" style="color: var(--color-primary);"></i> Filter Parts</h3>
+            
+            <div style="margin-bottom: 1.5rem;">
+              <label style="font-size: 0.8rem; font-weight: 700; color: #475569; display: block; margin-bottom: 0.5rem;">CATEGORY</label>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem;">
+                <label><input type="checkbox" checked> All Categories</label>
+                <label><input type="checkbox"> Brakes & Suspension</label>
+                <label><input type="checkbox"> Engine & Turbochargers</label>
+                <label><input type="checkbox"> Wheels & Rims</label>
+                <label><input type="checkbox"> Interior Tuning</label>
+                <label><input type="checkbox"> Electrical & Battery</label>
+              </div>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+              <label style="font-size: 0.8rem; font-weight: 700; color: #475569; display: block; margin-bottom: 0.5rem;">PRICE RANGE</label>
+              <input type="range" min="50" max="1500" value="1000" style="width: 100%;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: #0F172A; margin-top: 0.4rem;">
+                <span>$50</span>
+                <span>$1,500</span>
+              </div>
+            </div>
+
+            <button class="btn-primary" style="width: 100%; justify-content: center;"><i class="fas fa-check"></i> Apply Filters</button>
+          </div>
+
+          <!-- Catalog Products Grid -->
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; background: #FFFFFF; padding: 1rem 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--color-border);" class="shop-sort-header">
+              <span style="font-weight: 600; color: #475569;">Showing 12 Auto Parts</span>
+              <select style="padding: 0.4rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid #CBD5E1; font-weight: 600;">
+                <option>Sort by: Featured</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Customer Rating</option>
+              </select>
+            </div>
+
+            <div class="products-grid">
+              <div class="product-card">
+                <span class="product-discount-badge">-25% OFF</span>
+                <div class="product-img-wrapper"><i class="fas fa-compact-disc product-part-illustration"></i></div>
+                <div class="product-cat">WHEELS</div>
+                <h3 class="product-title">Forged Performance Alloy Wheel Rim Set 19"</h3>
+                <div class="price-row"><span class="current-price">$899.00</span></div>
+                <button class="btn-add-cart" data-id="rim-19" data-name="Forged Alloy Wheel Rim Set 19&quot;" data-price="899.00"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              </div>
+
+              <div class="product-card">
+                <span class="product-discount-badge">-18% OFF</span>
+                <div class="product-img-wrapper"><i class="fas fa-dharmachakra product-part-illustration"></i></div>
+                <div class="product-cat">SUSPENSION</div>
+                <h3 class="product-title">Coilover Adjustable Racing Suspension Kit</h3>
+                <div class="price-row"><span class="current-price">$649.00</span></div>
+                <button class="btn-add-cart" data-id="shock-coilovers" data-name="Coilover Racing Suspension Kit" data-price="649.00"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              </div>
+
+              <div class="product-card">
+                <div class="product-img-wrapper"><i class="fas fa-plug product-part-illustration"></i></div>
+                <div class="product-cat">ENGINE</div>
+                <h3 class="product-title">Iridium Racing Spark Plugs (Set of 4)</h3>
+                <div class="price-row"><span class="current-price">$75.00</span></div>
+                <button class="btn-add-cart" data-id="spark-plugs" data-name="Iridium Racing Spark Plugs" data-price="75.00"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ==========================================================================
+         TEMPLATE 3: FEATURED PRODUCT DETAIL PAGE
+         ========================================================================== -->
+    <main id="template-product" class="page-view">
+      <div class="section-container" style="padding-top: 3rem;">
+        <div class="product-detail-card">
+          <!-- Left: Gallery -->
+          <div>
+            <div class="product-detail-main-img">
+              <i class="fas fa-compact-disc" style="font-size: 8rem; color: var(--color-primary);"></i>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+              <div style="width: 70px; height: 70px; background: #F1F5F9; border: 2px solid var(--color-primary); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;"><i class="fas fa-compact-disc" style="font-size: 1.8rem; color: var(--color-primary);"></i></div>
+              <div style="width: 70px; height: 70px; background: #F1F5F9; border: 1px solid #CBD5E1; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;"><i class="fas fa-dharmachakra" style="font-size: 1.8rem; color: #64748B;"></i></div>
+              <div style="width: 70px; height: 70px; background: #F1F5F9; border: 1px solid #CBD5E1; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;"><i class="fas fa-circle-notch" style="font-size: 1.8rem; color: #64748B;"></i></div>
+            </div>
+          </div>
+
+          <!-- Right: Product Info -->
+          <div>
+            <span style="background: var(--color-primary-light); color: var(--color-primary); font-weight: 800; font-size: 0.8rem; padding: 4px 12px; border-radius: var(--radius-full);">IN STOCK - SHIPS TODAY</span>
+            <h1 style="font-size: 1.8rem; font-weight: 800; margin: 0.8rem 0; color: #0F172A;">Forged Performance Alloy Wheel Rim Set 19"</h1>
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; flex-wrap: wrap;">
+              <div class="rating-stars" style="font-size: 0.95rem;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>5.0 (48 Reviews)</span></div>
+              <span style="color: #94A3B8;">|</span>
+              <span style="font-weight: 700; color: #475569; font-size: 0.85rem;">SKU: OTO-RIM-19-FG</span>
+            </div>
+
+            <div style="font-size: 2rem; font-weight: 800; color: var(--color-primary); margin-bottom: 1.5rem;">$899.00 <span style="font-size: 1rem; color: #94A3B8; text-decoration: line-through; font-weight: 500;">$1,199.00</span></div>
+
+            <div style="background: #ECFDF5; border: 1px solid #A7F3D0; padding: 0.85rem 1rem; border-radius: var(--radius-md); color: #065F46; font-weight: 700; display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.5rem; font-size: 0.88rem;">
+              <i class="fas fa-circle-check" style="font-size: 1.2rem;"></i>
+              <span>Guaranteed Fitment for: 2024 BMW M3 Competition</span>
+            </div>
+
+            <p style="color: #475569; margin-bottom: 2rem; line-height: 1.6; font-size: 0.95rem;">Ultra-lightweight forged T6-6061 aircraft aluminum construction. Engineered to reduce unsprung mass for sharper track steering response, enhanced heat dissipation, and maximum durability.</p>
+
+            <div style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+              <button class="btn-primary" style="flex: 1; min-width: 200px; justify-content: center; font-size: 1rem; padding: 0.9rem;" data-id="rim-19" data-name="Forged Alloy Wheel Rim Set 19&quot;" data-price="899.00"><i class="fas fa-cart-plus"></i> Add to Cart Now</button>
+              <button class="btn-secondary" style="color: #0F172A; border-color: #CBD5E1; padding: 0.9rem 1.2rem;"><i class="fas fa-heart"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ==========================================================================
+         TEMPLATE 4: VEHICLE FITMENT FINDER & GARAGE
+         ========================================================================== -->
+    <main id="template-finder" class="page-view">
+      <div class="section-container" style="padding-top: 3rem;">
+        <h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem;"><i class="fas fa-warehouse" style="color: var(--color-primary);"></i> My Garage & Fitment Manager</h1>
+        <p style="color: #64748B; margin-bottom: 2rem;">Save your vehicles to automatically filter catalog products for exact zero-risk compatibility.</p>
+
+        <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 2rem;">
+          <h2 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 1.5rem;">Saved Vehicles</h2>
+          
+          <div class="garage-responsive-grid">
+            <div style="background: #F8FAFC; border: 2px solid var(--color-primary); padding: 1.2rem; border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="background: var(--color-primary); color: #FFFFFF; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: var(--radius-full);">ACTIVE VEHICLE</span>
+                <h3 style="font-size: 1.1rem; font-weight: 800; margin-top: 0.4rem;">2024 BMW M3 Competition</h3>
+                <p style="font-size: 0.82rem; color: #64748B;">3.0L Twin-Turbo S58 Inline-6</p>
+              </div>
+              <i class="fas fa-car-side" style="font-size: 2.5rem; color: var(--color-primary);"></i>
+            </div>
+
+            <div style="background: #F8FAFC; border: 1px dashed #CBD5E1; padding: 1.2rem; border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="background: #94A3B8; color: #FFFFFF; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: var(--radius-full);">GARAGE SLOT 2</span>
+                <h3 style="font-size: 1.1rem; font-weight: 800; margin-top: 0.4rem;">2022 Audi RS6 Avant</h3>
+                <p style="font-size: 0.82rem; color: #64748B;">4.0L Twin-Turbo V8</p>
+              </div>
+              <button class="btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem; color: #0F172A; border-color: #CBD5E1;">Select</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ==========================================================================
+         TEMPLATE 5: CART PAGE
+         ========================================================================== -->
+    <main id="template-cart" class="page-view">
+      <div class="section-container" style="padding-top: 3rem;">
+        <h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem;"><i class="fas fa-shopping-bag" style="color: var(--color-primary);"></i> Your Shopping Cart</h1>
+        
+        <div class="cart-responsive-grid">
+          <!-- Cart Table -->
+          <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 1.5rem;" id="cartItemsList">
+            <!-- Rendered by JS -->
+          </div>
+
+          <!-- Order Summary Card -->
+          <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 1.5rem; height: max-content;">
+            <h3 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 1.2rem; padding-bottom: 0.8rem; border-bottom: 1px solid #E2E8F0;">Order Summary</h3>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem; font-weight: 600;">
+              <span>Subtotal</span>
+              <span id="cartSubtotal">$1,548.00</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem; font-weight: 600; color: #10B981;">
+              <span>Express Freight Shipping</span>
+              <span>FREE</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: 800; color: #0F172A; padding-top: 1rem; border-top: 2px solid #E2E8F0; margin-bottom: 1.5rem;">
+              <span>Total</span>
+              <span id="cartGrandTotal">$1,548.00</span>
+            </div>
+
+            <button class="btn-primary" style="width: 100%; justify-content: center; padding: 0.95rem; font-size: 1rem;" data-target-template="checkout">
+              Proceed to Checkout <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ==========================================================================
+         TEMPLATE 6: CHECKOUT PAGE
+         ========================================================================== -->
+    <main id="template-checkout" class="page-view">
+      <div class="section-container" style="padding-top: 3rem;">
+        <h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem;"><i class="fas fa-credit-card" style="color: var(--color-primary);"></i> Express Checkout</h1>
+
+        <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 2rem; max-width: 800px; margin: 0 auto;">
+          <h2 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 1.2rem;">Shipping Details</h2>
+          <div class="checkout-form-grid">
+            <input type="text" placeholder="First Name" value="Alex" style="padding: 0.8rem; border: 1px solid #CBD5E1; border-radius: var(--radius-sm);">
+            <input type="text" placeholder="Last Name" value="Reynolds" style="padding: 0.8rem; border: 1px solid #CBD5E1; border-radius: var(--radius-sm);">
+            <input type="email" placeholder="Email Address" value="alex@example.com" class="full-width-field" style="padding: 0.8rem; border: 1px solid #CBD5E1; border-radius: var(--radius-sm);">
+            <input type="text" placeholder="Shipping Address" value="742 Evergreen Terrace" class="full-width-field" style="padding: 0.8rem; border: 1px solid #CBD5E1; border-radius: var(--radius-sm);">
+          </div>
+
+          <h2 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 1.2rem;">Payment Method</h2>
+          <div style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+            <button class="btn-primary" style="flex: 1; min-width: 140px; justify-content: center;"><i class="fas fa-credit-card"></i> Credit Card</button>
+            <button class="btn-secondary" style="flex: 1; min-width: 140px; justify-content: center; color: #0F172A; border-color: #CBD5E1;"><i class="fab fa-paypal"></i> PayPal</button>
+          </div>
+
+          <button class="btn-primary" id="placeOrderBtn" style="width: 100%; justify-content: center; padding: 1rem; font-size: 1.05rem;">
+            <i class="fas fa-lock"></i> Place Order ($1,548.00)
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-wrapper">
+            <div class="logo-icon"><i class="fas fa-car-side"></i></div>
+            <div class="logo-text">
+              <span class="brand">OTO <span>PLAZA</span></span>
+              <span class="tagline">AUTO PARTS & ACCESSORIES</span>
+            </div>
+          </div>
+          <p style="font-size: 0.88rem; line-height: 1.6;">High-converting Elementor Pro Auto Store redesign template built for performance, vehicle fitment accuracy, and maximum conversion rates.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>CATEGORIES</h4>
+          <ul class="footer-links">
+            <li><a href="#">Brakes & Suspension</a></li>
+            <li><a href="#">Engine & Turbo Systems</a></li>
+            <li><a href="#">Forged Alloy Wheels</a></li>
+            <li><a href="#">Interior Tuning & Seats</a></li>
+            <li><a href="#">Exhaust Systems</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>CUSTOMER SERVICE</h4>
+          <ul class="footer-links">
+            <li><a href="#">Vehicle Fitment Guarantee</a></li>
+            <li><a href="#">Express Freight Shipping</a></li>
+            <li><a href="#">30-Day Return Policy</a></li>
+            <li><a href="#">Track Order Status</a></li>
+            <li><a href="#">Contact Support</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>CONNECT WITH US</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 1rem;">Subscribe to get exclusive flash sale coupons and tuning guides.</p>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="email" placeholder="Your email address..." style="padding: 0.6rem; border-radius: var(--radius-sm); border: 1px solid #334155; background: #1E293B; color: #FFFFFF; font-size: 0.85rem; flex: 1;">
+            <button class="btn-primary" style="padding: 0.6rem 1rem;"><i class="fas fa-paper-plane"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 OTO PLAZA Auto Parts Store. All rights reserved. Built with Elementor Pro.</div>
+        <div style="display: flex; gap: 1.2rem; font-size: 1.2rem; color: #64748B;">
+          <i class="fab fa-cc-visa"></i>
+          <i class="fab fa-cc-mastercard"></i>
+          <i class="fab fa-cc-paypal"></i>
+          <i class="fab fa-cc-apple-pay"></i>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Engine Script -->
+  <script src="app.js"></script>
+</body>
+</html>
